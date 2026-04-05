@@ -1,0 +1,16 @@
+{
+	"org": {
+		"id": "{{project_id}}",
+		"name": "{{project_name}}",
+		"description": "{{project_description}}"
+	},
+	"repositories": {
+		"Category": [
+			{
+				"id": "generator-website",
+				"name": "Generator Website",
+				"description": "Generator for website project"
+			}
+		]
+	}
+}

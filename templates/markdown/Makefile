@@ -26,6 +26,9 @@ clean:
 
 # Retrieve the dependencies
 deps:
+	echo "PLACHOLDER"
+
+deps-extra-apt:
 	apt-get install -y markdownlint
 
 lint:
@@ -87,4 +90,4 @@ release-minor:
 release-patch:
 	rtk release --release-increment-type patch
 
-.PHONY: all ci clean deps lint test update-to-latest update-to-main update-to-version update-dotfiles release release-major release-minor release-patch
+.PHONY: all ci clean deps deps-extra-apt lint test update-to-latest update-to-main update-to-version update-dotfiles release release-major release-minor release-patch

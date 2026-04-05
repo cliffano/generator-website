@@ -1,4 +1,4 @@
-ci: clean stage deps test-gh-pages
+ci: clean stage deps test-gh-pages test-markdown
 
 clean:
 	rm -rf stage/
@@ -31,7 +31,7 @@ test-gh-pages:
 		--github_id "pakkunbot" \
 		--github_repo "gh-pages"
 	cd stage/gh-pages/ && \
-	  make ci
+	  make deps-extra-apt ci
 
 test-markdown:
 	node_modules/.bin/plop markdown -- \
@@ -43,6 +43,6 @@ test-markdown:
 		--github_id "pakkunbot" \
 		--github_repo "markdown"
 	cd stage/markdown/ && \
-	  make ci
+	  make deps-extra-apt ci
 
 .PHONY: ci clean clean-gh-pages clean-markdown stage deps generate-gh-pages generate-markdown test-gh-pages test-markdown

@@ -4,7 +4,7 @@
 ################################################################
 
 # PageMaker's version number
-PAGEMAKER_VERSION = 2.0.0
+PAGEMAKER_VERSION = 0.9.0-pre.0
 
 $(info ################################################################)
 $(info Building GH Pages website using Makefile:)
@@ -17,10 +17,8 @@ endef
 # Base targets
 
 # CI target to be executed by CI/CD tool
-ci: clean deps lint test
-
-# All target is just an alias to ci target
-all: clean deps lint test
+all: ci
+ci: clean deps lint build
 
 # Ensure stage directory exists
 stage:
