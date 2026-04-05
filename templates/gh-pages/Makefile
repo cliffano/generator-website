@@ -17,7 +17,7 @@ endef
 # Base targets
 
 # CI target to be executed by CI/CD tool
-ci: clean deps-upgrade deps lint test
+ci: clean deps lint test
 
 # All target is just an alias to ci target
 all: clean deps lint test
@@ -88,4 +88,4 @@ update-dotfiles: stage
 	  cp .gitignore ../../../../.gitignore && \
 	  cp .yamllint ../../../../.yamllint
 
-.PHONY: ci deps deps-extra-apt lint build update-to-latest update-to-main update-to-version
+.PHONY: ci deps deps-extra-apt lint build update-to-latest update-to-main update-to-version update-dotfiles
