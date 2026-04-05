@@ -75,8 +75,7 @@ update-dotfiles: stage
 	cd stage/generator-website/stage/$(GENERATOR_COMPONENT) && \
 	  cp -R .github/* ../../../../.github/ && \
 	  cp .gitignore ../../../../.gitignore && \
-	  cp .mdl-style.rb ../../../../.mdl-style.rb && \
-	  cp .rtk.json ../../../../.rtk.json
+	  cp .mdl-style.rb ../../../../.mdl-style.rb
 
 ################################################################
 # Release targets
