@@ -35,7 +35,7 @@ deps:
 	npm install .
 
 deps-extra-apt:
-	apt-get install -y doco-sitelint
+	apt-get install -y markdownlint
 
 lint:
 	node_modules/.bin/jsonlint -d data/

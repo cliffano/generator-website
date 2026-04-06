@@ -29,7 +29,7 @@ deps:
 	echo "PLACHOLDER"
 
 deps-extra-apt:
-	apt-get install -y doco-sitelint
+	apt-get install -y markdownlint
 
 lint:
 	mdl -s .mdl-style.rb $(shell find . -path ./stage -prune -o -name "*.md" -print)
