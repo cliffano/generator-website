@@ -20,8 +20,8 @@ export default function (plop) {
     return text.toUpperCase().replace(/\s+/g, '').replace(/[^A-Z]/g, '_');
   });
 
-  plop.setGenerator('gh-pages', {
-    description: 'gh-pages Plop',
+  plop.setGenerator('project-site', {
+    description: 'project-site Plop',
     prompts: [
       {
         type: 'input',
@@ -64,17 +64,17 @@ export default function (plop) {
         type: 'addMany',
         destination: 'stage',
         templateFiles: [
-          'templates/gh-pages/.*/*/*/*',
-          'templates/gh-pages/.*/*/*',
-          'templates/gh-pages/**/.*',
-          'templates/gh-pages/**/*'
+          'templates/project-site/.*/*/*/*',
+          'templates/project-site/.*/*/*',
+          'templates/project-site/**/.*',
+          'templates/project-site/**/*'
         ]
       }
     ]
   });
 
-  plop.setGenerator('markdown', {
-    description: 'markdown Plop',
+  plop.setGenerator('doco-site', {
+    description: 'doco-site Plop',
     prompts: [
       {
         type: 'input',
@@ -117,10 +117,10 @@ export default function (plop) {
         type: 'addMany',
         destination: 'stage',
         templateFiles: [
-          'templates/markdown/.*/*/*/*',
-          'templates/markdown/.*/*/*',
-          'templates/markdown/**/.*',
-          'templates/markdown/**/*'
+          'templates/doco-site/.*/*/*/*',
+          'templates/doco-site/.*/*/*',
+          'templates/doco-site/**/.*',
+          'templates/doco-site/**/*'
         ]
       }
     ]

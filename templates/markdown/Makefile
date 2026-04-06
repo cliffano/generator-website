@@ -1,5 +1,5 @@
 ################################################################
-# Doco: Makefile for building Markdown website
+# Doco: Makefile for building DocoSite website
 # https://github.com/cliffano/doco
 ################################################################
 
@@ -7,7 +7,7 @@
 DOCO_VERSION = 0.9.0-pre.0
 
 $(info ################################################################)
-$(info Building Markdown website using Doco:)
+$(info Building DocoSite website using Doco:)
 
 ################################################################
 # Base targets
@@ -29,7 +29,7 @@ deps:
 	echo "PLACHOLDER"
 
 deps-extra-apt:
-	apt-get install -y markdownlint
+	apt-get install -y doco-sitelint
 
 lint:
 	mdl -s .mdl-style.rb $(shell find . -path ./stage -prune -o -name "*.md" -print)

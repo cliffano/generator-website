@@ -1,5 +1,5 @@
 ################################################################
-# PageMaker: Makefile for building GH Pages website
+# PageMaker: Makefile for building ProjectSite website
 # https://github.com/cliffano/pagemaker
 ################################################################
 
@@ -7,7 +7,7 @@
 PAGEMAKER_VERSION = 0.9.0-pre.0
 
 $(info ################################################################)
-$(info Building GH Pages website using Makefile:)
+$(info Building ProjectSite website using Makefile:)
 
 define python_venv
 	. .venv/bin/activate && $(1)
@@ -35,7 +35,7 @@ deps:
 	npm install .
 
 deps-extra-apt:
-	apt-get install -y markdownlint
+	apt-get install -y doco-sitelint
 
 lint:
 	node_modules/.bin/jsonlint -d data/

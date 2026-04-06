@@ -12,18 +12,18 @@ It provides the following components:
 
 | Component | Description |
 |-----------|-------------|
-| gh-pages | Generate a GH-Pages website |
-| markdown | Generate a Markdown website |
+| project-site | Generate a ProjectSite website |
+| doco-site | Generate a DocoSite website |
 
 ## Usage
 
-Generate GH Pages website:
+Generate ProjectSite website:
 
-    make generate-gh-pages
+    make generate-project-site
 
-Generate Markdown website:
+Generate DocoSite website:
 
-    make generate-markdown
+    make generate-doco-site
 
 Both components will prompt you the following inputs:
 
@@ -42,5 +42,5 @@ Both components will prompt you the following inputs:
 
 Related Projects:
 
-* [Doco](https://github.com/cliffano/doco) - Makefile for building Markdown website
-* [PageMaker](https://github.com/cliffano/pagemaker) - Makefile for building GH Pages website
+* [Doco](https://github.com/cliffano/doco) - Makefile for building DocoSite website
+* [PageMaker](https://github.com/cliffano/pagemaker) - Makefile for building ProjectSite website

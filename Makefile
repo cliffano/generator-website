@@ -1,13 +1,13 @@
-ci: clean stage deps test-gh-pages test-markdown
+ci: clean stage deps test-project-site test-doco-site
 
 clean:
 	rm -rf stage/
 
-clean-gh-pages:
-	rm -rf stage/gh-pages/
+clean-project-site:
+	rm -rf stage/project-site/
 
-clean-markdown:
-	rm -rf stage/markdown/
+clean-doco-site:
+	rm -rf stage/doco-site/
 
 stage:
 	mkdir -p stage/
@@ -15,34 +15,34 @@ stage:
 deps:
 	npm install .
 
-generate-gh-pages: clean-gh-pages
-	node_modules/.bin/plop gh-pages
+generate-project-site: clean-project-site
+	node_modules/.bin/plop project-site
 
-generate-markdown: clean-markdown
-	node_modules/.bin/plop markdown
+generate-doco-site: clean-doco-site
+	node_modules/.bin/plop doco-site
 
-test-gh-pages:
-	node_modules/.bin/plop gh-pages -- \
-	    --project_id "gh-pages" \
-		--project_name "GH Pages" \
-		--project_desc "A sample GH Pages project" \
+test-project-site:
+	node_modules/.bin/plop project-site -- \
+	    --project_id "project-site" \
+		--project_name "ProjectSite" \
+		--project_desc "A sample ProjectSite project" \
 		--author_name "Pakkun" \
 		--author_email "blah+pakkun@cliffano.com" \
 		--github_id "pakkunbot" \
-		--github_repo "gh-pages"
-	cd stage/gh-pages/ && \
+		--github_repo "project-site"
+	cd stage/project-site/ && \
 	  make deps-extra-apt ci
 
-test-markdown:
-	node_modules/.bin/plop markdown -- \
-	    --project_id "markdown" \
-		--project_name "Markdown" \
-		--project_desc "A sample Markdown project" \
+test-doco-site:
+	node_modules/.bin/plop doco-site -- \
+	    --project_id "doco-site" \
+		--project_name "DocoSite" \
+		--project_desc "A sample DocoSite project" \
 		--author_name "Pakkun" \
 		--author_email "blah+pakkun@cliffano.com" \
 		--github_id "pakkunbot" \
-		--github_repo "markdown"
-	cd stage/markdown/ && \
+		--github_repo "doco-site"
+	cd stage/doco-site/ && \
 	  make deps-extra-apt ci
 
-.PHONY: ci clean clean-gh-pages clean-markdown stage deps generate-gh-pages generate-markdown test-gh-pages test-markdown
+.PHONY: ci clean clean-project-site clean-doco-site stage deps generate-project-site generate-doco-site test-project-site test-doco-site
