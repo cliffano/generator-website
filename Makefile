@@ -30,7 +30,7 @@ test-project-site:
 		--github_id "pakkunbot" \
 		--github_repo "project-site" \
 		--github_token_prefix "STUDIO"
-	cd stage/project-site/ && make ci
+	cd stage/project-site/ && make deps ci
 
 ########################################
 # project-site-partials targets
@@ -75,7 +75,7 @@ test-doco-site:
 		--github_id "pakkunbot" \
 		--github_repo "doco-site" \
 		--github_token_prefix "STUDIO"
-	cd stage/doco-site/ && make ci
+	cd stage/doco-site/ && make deps ci
 
 ########################################
 # doco-site-partials targets
