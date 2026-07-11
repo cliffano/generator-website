@@ -5,9 +5,9 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
         with:
-          token: $\{{ secrets.ORG_GITHUB_TOKEN }}
+          token: $\{{ secrets.{{github_token_prefix}}_GITHUB_TOKEN }}
           set-safe-directory: $\{{ github.workspace }}
       - uses: cliffano/command-docker-action@v1.4.0
         with:
@@ -16,4 +16,4 @@ jobs:
       - uses: cliffano/save-changes-action@main
         with:
           message: "Generate website on $(date +'%d/%m/%Y %H:%M:%S')"
-          github_token: $\{{ secrets.ORG_GITHUB_TOKEN }}
+          github_token: $\{{ secrets.{{github_token_prefix}}_GITHUB_TOKEN }}
