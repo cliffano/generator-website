@@ -19,11 +19,15 @@ It provides the following components:
 
 Generate ProjectSite website:
 
-    make generate-project-site
+```shell
+make generate-project-site
+```
 
 Generate DocoSite website:
 
-    make generate-doco-site
+```shell
+make generate-doco-site
+```
 
 Both components will prompt you the following inputs:
 
