@@ -9,4 +9,4 @@
 
 # {{project_name}}
 
-Website for {{project_desc}} at [https://example.com] .
+Website for {{project_desc}} at <https://example.com> .
