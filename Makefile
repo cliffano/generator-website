@@ -101,6 +101,8 @@ test-doco-site-partials:
 
 update-doco-to-latest:
 	cd templates/doco-site && make update-to-latest
+
+update-pagemaker-to-latest:
 	cd templates/project-site && make update-to-latest
 
-.PHONY: ci clean clean-project-site clean-project-site-partials clean-doco-site clean-doco-site-partials stage deps generate-project-site test-project-site generate-project-site-partials test-project-site-partials generate-doco-site test-doco-site generate-doco-site-partials test-doco-site-partials update-doco-to-latest
+.PHONY: ci clean clean-project-site clean-project-site-partials clean-doco-site clean-doco-site-partials stage deps generate-project-site test-project-site generate-project-site-partials test-project-site-partials generate-doco-site test-doco-site generate-doco-site-partials test-doco-site-partials update-doco-to-latest update-pagemaker-to-latest
