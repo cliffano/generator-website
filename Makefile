@@ -25,7 +25,7 @@ test-project-site:
 		--project_name "ProjectSite" \
 		--project_desc "A sample project website" \
 		--author_name "Pakkun" \
-		--author_email "blah+pakkun@cliffano.com" \
+		--author_email "pakkunbot@users.noreply.github.com" \
 		--author_url "https://github.com/pakkunbot" \
 		--github_id "pakkunbot" \
 		--github_repo "project-site" \
@@ -48,7 +48,7 @@ test-project-site-partials:
 		--project_name "ProjectSite" \
 		--project_desc "A sample project website" \
 		--author_name "Pakkun" \
-		--author_email "blah+pakkun@cliffano.com" \
+		--author_email "pakkunbot@users.noreply.github.com" \
 		--author_url "https://github.com/pakkunbot" \
 		--github_id "pakkunbot" \
 		--github_repo "project-site" \
@@ -70,7 +70,7 @@ test-doco-site:
 		--project_name "DocoSite" \
 		--project_desc "A sample documentation website" \
 		--author_name "Pakkun" \
-		--author_email "blah+pakkun@cliffano.com" \
+		--author_email "pakkunbot@users.noreply.github.com" \
 		--author_url "https://github.com/pakkunbot" \
 		--github_id "pakkunbot" \
 		--github_repo "doco-site" \
@@ -93,7 +93,7 @@ test-doco-site-partials:
 		--project_name "DocoSite" \
 		--project_desc "A sample documentation website" \
 		--author_name "Pakkun" \
-		--author_email "blah+pakkun@cliffano.com" \
+		--author_email "pakkunbot@users.noreply.github.com" \
 		--author_url "https://github.com/pakkunbot" \
 		--github_id "pakkunbot" \
 		--github_repo "doco-site" \
