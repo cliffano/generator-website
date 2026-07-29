@@ -1,1 +1,0 @@
-plop - devDependencies - upgraded to 4.0.5
