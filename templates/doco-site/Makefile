@@ -4,7 +4,7 @@
 ################################################################
 
 # Doco info
-DOCO_VERSION = 0.11.0
+DOCO_VERSION = 0.12.0
 
 UPDATE_MAKEFILE = doco
 UPDATE_GENERATOR = website
