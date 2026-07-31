@@ -4,7 +4,7 @@
 ################################################################
 
 # PageMaker info
-PAGEMAKER_VERSION = 1.1.0
+PAGEMAKER_VERSION = 1.2.0
 
 UPDATE_MAKEFILE = pagemaker
 UPDATE_GENERATOR = website
@@ -71,7 +71,7 @@ deps-upgrade:
 lint:
 	node_modules/.bin/jsonlint -d data/
 	node_modules/.bin/yamllint .github/workflows/*.yaml
-	mdl -r ~MD002,~MD013,~MD033 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
+	mdl -r ~MD002,~MD013,~MD029,~MD033 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
 
 test:
 	node_modules/.bin/markdown-link-check docs/index.md
