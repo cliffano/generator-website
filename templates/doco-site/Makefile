@@ -4,7 +4,7 @@
 ################################################################
 
 # Doco info
-DOCO_VERSION = 0.10.0
+DOCO_VERSION = 0.11.0
 
 UPDATE_MAKEFILE = doco
 UPDATE_GENERATOR = website
@@ -55,7 +55,7 @@ deps-upgrade:
 # Testing targets
 
 lint:
-	mdl -s .mdl-style.rb $(shell find . -path ./stage -prune -o -name "*.md" -print)
+	mdl -r ~MD002,~MD013,~MD029,~MD033 $(shell find . -path ./stage -prune -o -path ./node_modules -prune -o -name "CHANGELOG.md" -prune -o -name "*.md" -print)
 
 test:
 	echo "PLACEHOLDER"
