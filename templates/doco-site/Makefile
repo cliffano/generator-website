@@ -4,11 +4,11 @@
 ################################################################
 
 # Doco info
-DOCO_VERSION = 0.12.0
+DOCO_VERSION = 0.13.0
 
 UPDATE_MAKEFILE = doco
 UPDATE_GENERATOR = website
-UPDATE_DOTFILES = .github/. .gitignore
+UPDATE_DOTFILES = .github/. .gitignore AGENTS.md
 
 ################################################################
 # User configuration variables
