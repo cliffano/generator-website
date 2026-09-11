@@ -1,8 +1,12 @@
+<!-- BEGIN:AVATAR -->
 ![Avatar](avatar.jpg)
+<!-- END:AVATAR -->
 
+<!-- BEGIN:BADGES -->
 [![Build Status](https://github.com/cliffano/generator-website/workflows/CI/badge.svg)](https://github.com/cliffano/generator-website/actions?query=workflow%3ACI)
 [![Code Scanning Status](https://github.com/cliffano/generator-website/workflows/CodeQL/badge.svg)](https://github.com/cliffano/generator-website/actions?query=workflow%3ACodeQL)
 [![Security Status](https://snyk.io/test/github/cliffano/generator-website/badge.svg)](https://snyk.io/test/github/cliffano/generator-website)
+<!-- END:BADGES -->
 
 # Generator Website
 
@@ -43,6 +47,15 @@ Both components will prompt you the following inputs:
 | GitHub Repo | The GitHub repo name. |
 
 ## Colophon
+
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https://cliffano.github.io/developers-guide-makefile.html)
+<!-- END:DEVELOPERS_GUIDE -->
+
+<!-- BEGIN:BUILD_REPORTS -->
+Build reports:
+
+<!-- END:BUILD_REPORTS -->
 
 Related Projects:
 
