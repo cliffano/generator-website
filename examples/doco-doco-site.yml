@@ -1,0 +1,15 @@
+---
+package_name: docosite
+author: Pakkun
+generator:
+  component: doco-site
+  inputs:
+    project_id: docosite
+    project_name: DocoSite
+    project_desc: A sample documentation website
+    author_name: Pakkun
+    author_email: pakkunbot@users.noreply.github.com
+    author_url: https://github.com/pakkunbot
+    github_id: pakkunbot
+    github_repo: doco-site
+    github_token_prefix: STUDIO

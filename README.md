@@ -46,6 +46,19 @@ Both components will prompt you the following inputs:
 | GitHub ID | The GitHub ID of the project repo. |
 | GitHub Repo | The GitHub repo name. |
 
+## Usage With Config File
+
+Each component also has a `-with-config` target that skips the interactive prompts by reading the inputs from a YAML config file. See [examples/](examples/) for sample config files for each component.
+
+Pass the config file path via the `GENERATOR_CONFIG` variable. It defaults to `pagemaker.yml` for `project-site` targets, and `doco.yml` for `doco-site` targets:
+
+```shell
+make generate-project-site-with-config GENERATOR_CONFIG=path/to/pagemaker.yml
+make generate-project-site-partials-with-config GENERATOR_CONFIG=path/to/pagemaker.yml
+make generate-doco-site-with-config GENERATOR_CONFIG=path/to/doco.yml
+make generate-doco-site-partials-with-config GENERATOR_CONFIG=path/to/doco.yml
+```
+
 ## Colophon
 
 <!-- BEGIN:DEVELOPERS_GUIDE -->

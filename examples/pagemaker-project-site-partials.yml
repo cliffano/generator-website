@@ -1,0 +1,15 @@
+---
+package_name: projectsite
+author: Pakkun
+generator:
+  component: project-site-partials
+  inputs:
+    project_id: projectsite
+    project_name: ProjectSite
+    project_desc: A sample project website
+    author_name: Pakkun
+    author_email: pakkunbot@users.noreply.github.com
+    author_url: https://github.com/pakkunbot
+    github_id: pakkunbot
+    github_repo: project-site
+    github_token_prefix: STUDIO
