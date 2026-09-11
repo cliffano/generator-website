@@ -1,23 +1,24 @@
 # AGENTS.md
 
-This repository contains a website project following a unified standard for
-build automation, content generation, and coding conventions.
+This repository contains a ProjectSite website project following a unified
+standard for tooling, build automation, and coding conventions. All projects
+share the same conventions to keep sites consistent and maintainable.
 
 The key components of the standard include:
 
-- Build automation (PageMaker or Doco Makefiles)
-- Content generation from project metadata/templates
-- Workflow validation and documentation linting
-- Static documentation and page publishing workflows
+- Build automation (PageMaker)
+- Content generation from project metadata (Jazz templating)
+- Documentation linting (JSON linting, YAML linting, markdownlint/mdl, link checking)
+- Static documentation publishing
 
-This document outlines the common conventions that apply across website
-projects generated from this template family.
+This document outlines the common conventions that apply across the ProjectSite
+website projects.
 
 ## Runtime & Dependencies
 
-- **Node.js Version**: 22+ (for npm-based site tooling)
-- **Dependency Manager**: npm (project-site variants)
-- **Documentation Linting**: markdownlint/mdl
+- **Node.js Version**: 26
+- **Dependency Manager**: npm
+- **Content Templating**: Jazz (jazz-cli)
 - **Configuration Tooling**: yq
 
 ### Adding Dependencies
@@ -32,40 +33,41 @@ make deps                         # Install all dependencies
 
 ```text
 project/
-├── data/                    # Structured project/site data
-├── docs/                    # Generated or source documentation pages
-├── templates/               # Content templates (project-site variants)
-├── images/                  # Site or docs image assets
+├── data/                    # Project metadata (project-info.json)
+├── docs/                    # Generated site output (index.md, images/)
+├── templates/               # Jazz content templates (index.md.jazz)
 ├── .github/                 # GitHub workflows
-├── AGENTS.md                # Agent instructions (this file)
-├── Makefile                 # Build automation (PageMaker/Doco)
-├── README.md                # Project README
-└── CHANGELOG.md             # Changelog
+├── Makefile                 # Build automation (PageMaker)
+├── package.json             # npm package definition
+└── README.md                # Project README
 ```
 
-## Build Automation
+## Build Automation (PageMaker)
 
-Website projects in this template family use Makefile-driven automation.
+This project uses **PageMaker** as its standard build automation tool for
+ProjectSite website projects.
 
 ### Common Commands
 
 ```bash
-make ci                 # Run standard validation flow
+make ci                 # Run clean + lint + build
+make all                # Alias for ci
 make clean              # Remove staged/generated files
-make deps               # Install dependencies
-make lint               # Run markdown/yaml/json lint checks
-make build              # Build generated docs/pages (project-site variants)
-make test               # Run link or site checks where configured
+make deps               # Install dependencies (npm + markdownlint via apt)
+make deps-upgrade       # Upgrade dependencies via pkjutil
+make lint               # Validate JSON data, workflow YAML, and Markdown
+make build              # Merge data/project-info.json into templates/index.md.jazz -> docs/index.md
+make test               # Check links in docs/index.md
 ```
 
 ### Update Targets
 
 ```bash
-make update-to-latest   # Update Makefile to latest upstream tool release
-make update-to-main     # Update Makefile to upstream main branch
-make update-to-version  # Update Makefile to specific upstream version
-make update-dotfiles    # Refresh project dotfiles from generator
-make update-partials    # Refresh README partial snippets from generator
+make update-to-latest   # Update Makefile to latest PageMaker release
+make update-to-main     # Update Makefile to PageMaker main branch
+make update-to-version  # Update Makefile to a specific PageMaker version
+make update-dotfiles    # Refresh project dotfiles from generator-website
+make update-partials    # Refresh README partial snippets from generator-website
 ```
 
 ## Development Environment
@@ -77,62 +79,74 @@ You can run the container using: `docker run --rm --workdir /opt/workspace -v /v
 
 ## Code Style and Linting
 
-Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `docs/**/*.md`, `README.md`, `CHANGELOG.md`, `data/**/*.json`, `data/**/*.yml`, `data/**/*.yaml`, `templates/**/*.jazz`, `templates/**/*.md`, `doco.yml`, `pagemaker.yml`
+- JSON, YAML, and Markdown files are validated via `make lint`
+- Generated `docs/index.md` output should stay traceable to its `data/` and `templates/` sources
 
-- Markdown files should be clear, lint-clean, and maintainable
-- Workflow/config changes should stay deterministic and explicit
+### ProjectSite Code Guidelines
 
-### Style & Formatting
+Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `data/**/*.json`, `templates/**/*.jazz`, `docs/**/*.md`, `README.md`, `CHANGELOG.md`
 
-#### Markdown Content
+#### Style & Formatting
 
-All markdown content should stay readable and lint-friendly.
+##### Workflow and Build Config
 
-Guidelines:
-
-- Use descriptive headings and short, direct paragraphs
-- Keep examples copy-paste friendly
-- Keep link text meaningful and avoid ambiguous references
-
-#### YAML and Workflow Files
+All workflow and build configuration changes should stay explicit, readable, and
+reproducible.
 
 Guidelines:
 
 - Use two-space indentation in YAML files
-- Keep workflow steps explicit and predictable
-- Prefer readable shell blocks over compressed command chains
+- Keep workflow/job/step names descriptive
+- Avoid compact one-liners that hide intent in CI definitions
+- Keep shell snippets readable and fail fast
 
-#### Data and Template Files
+##### Data Files
+
+Data files should remain valid JSON:
+
+```bash
+make lint
+```
 
 Guidelines:
 
-- Keep JSON/YAML data keys stable and self-descriptive
-- Keep templates focused on presentation, not heavy logic
-- Keep generated-output assumptions documented in README
+- Keep JSON keys stable and descriptive
+- Prefer explicit objects over ambiguous arrays when feasible
+- Keep data formatting consistent to reduce noisy diffs
 
-### Project Conventions
+##### Content Templates
 
-- Treat `data/` as source-of-truth for generated pages
-- Keep `docs/` changes aligned with build template expectations
-- Keep update targets (`update-dotfiles`, `update-partials`) functional
+Guidelines:
 
-### Validation
+- Keep `templates/index.md.jazz` focused on presentation, not heavy logic
+- Keep `data/project-info.json` as the source-of-truth for generated content
+- Treat `docs/index.md` as generated output; regenerate with `make build` rather than editing it by hand
 
-- Run `make lint` before merging content/config changes
-- Run `make build` when template or data changes affect generated docs
-- Keep workflow behavior aligned with Makefile target flow
+#### Site Structure Conventions
+
+- Keep project metadata in `data/project-info.json`
+- Keep content templates in `templates/`
+- Keep generated output in `docs/`
+
+#### Validation
+
+- Treat lint failures as build failures
+- Run `make build` after any `data/` or `templates/` change and verify the `docs/index.md` output
+- Run `make test` to catch broken links in generated documentation
 
 ## Testing
 
-Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `docs/**/*.md`
+- This project emphasizes deterministic lint/build/link checks rather than unit test suites
+- Run validation with `make ci`
 
-- Run project checks with `make test` where available
-- Keep docs/site checks deterministic and easy to diagnose
+### Testing Guidelines
 
-### Validation Strategy
+Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`
 
-Website projects emphasize deterministic lint/build verification and content
-integrity checks.
+#### Validation Strategy
+
+This project currently relies on deterministic validation via lint/build/link
+checks rather than dedicated unit test suites.
 
 Primary validation commands:
 
@@ -141,18 +155,24 @@ make ci
 make test
 ```
 
-### What to Validate
+#### What to Validate
 
-- Markdown/documentation lint passes
-- Data/template-driven build output succeeds
-- Link checks (where configured) pass reliably
-- Workflow steps remain reproducible in CI
+- JSON data integrity (`make lint`)
+- Site build success (`make build`)
+- Link checks in generated documentation (`make test`)
+- Workflow execution consistency for CI and publish flows
 
-### Regression Prevention
+#### Workflow Test Practices
 
-When updating templates, data, or docs generation behavior:
+- Keep CI steps deterministic and idempotent
+- Avoid network-dependent checks unless required by link-check behavior
+- Fail fast on missing configuration values
+
+#### Regression Prevention
+
+When changing content generation, data model, or template behavior:
 
 1. Run `make lint`
-2. Run `make build`
+2. Run `make build` and verify the `docs/index.md` output
 3. Run `make test`
-4. Verify docs output changes are intentional
+4. Verify generated documentation changes are intentional

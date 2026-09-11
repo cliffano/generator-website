@@ -1,71 +1,68 @@
 # AGENTS.md
 
-This repository contains a website project following a unified standard for
-build automation, content generation, and coding conventions.
+This repository contains a DocoSite website project following a unified
+standard for tooling, build automation, and coding conventions. All projects
+share the same conventions to keep sites consistent and maintainable.
 
 The key components of the standard include:
 
-- Build automation (PageMaker or Doco Makefiles)
-- Content generation from project metadata/templates
-- Workflow validation and documentation linting
-- Static documentation and page publishing workflows
+- Build automation (Doco)
+- Markdown-based documentation content
+- Documentation linting (markdownlint/mdl)
+- Configuration via `doco.yml`
 
-This document outlines the common conventions that apply across website
-projects generated from this template family.
+This document outlines the common conventions that apply across the DocoSite
+website projects.
 
 ## Runtime & Dependencies
 
-- **Node.js Version**: 22+ (for npm-based site tooling)
-- **Dependency Manager**: npm (project-site variants)
-- **Documentation Linting**: markdownlint/mdl
+- **Python Version**: 3 (via `venv`)
+- **Dependency Manager**: pip (`requirements.txt` / `requirements-dev.txt`)
 - **Configuration Tooling**: yq
 
 ### Adding Dependencies
 
 ```bash
-npm install package_name          # Add runtime dependency
-npm install --save-dev pkg_name   # Add development dependency
-make deps                         # Install all dependencies
+echo "package_name" >> requirements.in   # Add runtime dependency
+make deps-upgrade                        # Recompile and install dependencies
+make deps                                # Install dependencies
 ```
 
 ## Project Structure
 
 ```text
 project/
-├── data/                    # Structured project/site data
-├── docs/                    # Generated or source documentation pages
-├── templates/               # Content templates (project-site variants)
-├── images/                  # Site or docs image assets
+├── docs/                    # Markdown documentation pages
+├── images/                  # Site image assets
 ├── .github/                 # GitHub workflows
-├── AGENTS.md                # Agent instructions (this file)
-├── Makefile                 # Build automation (PageMaker/Doco)
-├── README.md                # Project README
-└── CHANGELOG.md             # Changelog
+├── doco.yml                 # Doco project configuration
+├── Makefile                 # Build automation (Doco)
+└── README.md                # Project README
 ```
 
-## Build Automation
+## Build Automation (Doco)
 
-Website projects in this template family use Makefile-driven automation.
+This project uses **Doco** as its standard build automation tool for DocoSite
+website projects.
 
 ### Common Commands
 
 ```bash
-make ci                 # Run standard validation flow
+make ci                 # Run deps + lint
+make all                # Alias for ci
 make clean              # Remove staged/generated files
-make deps               # Install dependencies
-make lint               # Run markdown/yaml/json lint checks
-make build              # Build generated docs/pages (project-site variants)
-make test               # Run link or site checks where configured
+make deps               # Set up the Python venv and install dependencies
+make deps-upgrade       # Upgrade dependencies and recompile requirements
+make lint               # Run Markdown lint checks
 ```
 
 ### Update Targets
 
 ```bash
-make update-to-latest   # Update Makefile to latest upstream tool release
-make update-to-main     # Update Makefile to upstream main branch
-make update-to-version  # Update Makefile to specific upstream version
-make update-dotfiles    # Refresh project dotfiles from generator
-make update-partials    # Refresh README partial snippets from generator
+make update-to-latest   # Update Makefile to latest Doco release
+make update-to-main     # Update Makefile to Doco main branch
+make update-to-version  # Update Makefile to a specific Doco version
+make update-dotfiles    # Refresh project dotfiles from generator-website
 ```
 
 ## Development Environment
@@ -77,16 +74,28 @@ You can run the container using: `docker run --rm --workdir /opt/workspace -v /v
 
 ## Code Style and Linting
 
-Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `docs/**/*.md`, `README.md`, `CHANGELOG.md`, `data/**/*.json`, `data/**/*.yml`, `data/**/*.yaml`, `templates/**/*.jazz`, `templates/**/*.md`, `doco.yml`, `pagemaker.yml`
+- Markdown documentation pages are validated via `make lint`
+- Workflow and config changes should stay deterministic and minimal
 
-- Markdown files should be clear, lint-clean, and maintainable
-- Workflow/config changes should stay deterministic and explicit
+### DocoSite Code Guidelines
 
-### Style & Formatting
+Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `docs/**/*.md`, `doco.yml`, `README.md`, `CHANGELOG.md`
 
-#### Markdown Content
+#### Style & Formatting
 
-All markdown content should stay readable and lint-friendly.
+##### Workflow and Build Config
+
+All workflow and build configuration changes should stay explicit, readable, and
+reproducible.
+
+Guidelines:
+
+- Use two-space indentation in YAML files
+- Keep workflow/job/step names descriptive
+- Avoid compact one-liners that hide intent in CI definitions
+- Keep shell snippets readable and fail fast
+
+##### Documentation Pages
 
 Guidelines:
 
@@ -94,65 +103,54 @@ Guidelines:
 - Keep examples copy-paste friendly
 - Keep link text meaningful and avoid ambiguous references
 
-#### YAML and Workflow Files
+#### Site Structure Conventions
 
-Guidelines:
+- Keep documentation pages in `docs/`
+- Keep image assets in `images/`
+- Keep configuration values in `doco.yml`
 
-- Use two-space indentation in YAML files
-- Keep workflow steps explicit and predictable
-- Prefer readable shell blocks over compressed command chains
+#### Validation
 
-#### Data and Template Files
-
-Guidelines:
-
-- Keep JSON/YAML data keys stable and self-descriptive
-- Keep templates focused on presentation, not heavy logic
-- Keep generated-output assumptions documented in README
-
-### Project Conventions
-
-- Treat `data/` as source-of-truth for generated pages
-- Keep `docs/` changes aligned with build template expectations
-- Keep update targets (`update-dotfiles`, `update-partials`) functional
-
-### Validation
-
-- Run `make lint` before merging content/config changes
-- Run `make build` when template or data changes affect generated docs
-- Keep workflow behavior aligned with Makefile target flow
+- Treat lint failures as build failures
+- Run `make lint` before merging documentation changes
+- Keep workflow changes aligned with Makefile targets
 
 ## Testing
 
-Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`, `docs/**/*.md`
+- This project emphasizes deterministic lint checks rather than unit test suites
+- Run validation with `make ci`
 
-- Run project checks with `make test` where available
-- Keep docs/site checks deterministic and easy to diagnose
+### Testing Guidelines
 
-### Validation Strategy
+Applies to: `.github/workflows/**/*.yml`, `.github/workflows/**/*.yaml`
 
-Website projects emphasize deterministic lint/build verification and content
-integrity checks.
+#### Validation Strategy
 
-Primary validation commands:
+This project currently relies on deterministic validation via Markdown lint
+checks rather than dedicated unit test suites.
+
+Primary validation command:
 
 ```bash
 make ci
-make test
 ```
 
-### What to Validate
+#### What to Validate
 
-- Markdown/documentation lint passes
-- Data/template-driven build output succeeds
-- Link checks (where configured) pass reliably
-- Workflow steps remain reproducible in CI
+- Markdown documentation lint passes (`make lint`)
+- Dependency installation succeeds (`make deps`)
+- Workflow execution consistency for CI flows
 
-### Regression Prevention
+#### Workflow Test Practices
 
-When updating templates, data, or docs generation behavior:
+- Keep CI steps deterministic and idempotent
+- Avoid network-dependent checks unless required by dependency resolution
+- Fail fast on missing configuration values
+
+#### Regression Prevention
+
+When changing documentation content or build behavior:
 
 1. Run `make lint`
-2. Run `make build`
-3. Run `make test`
-4. Verify docs output changes are intentional
+2. Run `make ci`
+3. Verify documentation output changes are intentional
