@@ -10,7 +10,7 @@
 
 # Generator Website
 
-Generator Website is Code Generator for micro websites.
+Generator Website is a code generator for micro websites.
 
 It provides the following components:
 
