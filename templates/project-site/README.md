@@ -9,4 +9,8 @@
 
 # {{project_name}}
 
-Website for {{project_desc}} at <https://example.com> .
+{{project_desc}} at <https://example.com> .
+
+<!-- BEGIN:DEVELOPERS_GUIDE -->
+[Developer's Guide](https://cliffano.github.io/developers-guide-website.html)
+<!-- END:DEVELOPERS_GUIDE -->
